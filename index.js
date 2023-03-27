@@ -30,9 +30,10 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+    skor1, skor değerini 0'dan başlatır ve ilk console log 0 değerini verir. Çünü return skor++ ifadesinde ilk başta 0 olarak başlar,
+    çıktıyı alır, sonrasında değeri arttırır. Her skor1 console çıktısını aldığımızda skorun 1 arttığını görürüz. 
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+    İlk fonksiyon closure kullanmakta, skor değişkeni fonksiyon içinde tutulduğu için dışarıdan erişilemiyor.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
 */
 
@@ -45,6 +46,18 @@ function skorArtirici() {
 }
 
 const skor1 = skorArtirici();
+console.log(skor1());
+console.log(skor1());
+console.log(skor1());
+
+
+
+/*console.log(skor1());
+console.log(skor1());
+console.log(skor1());
+console.log(skor1());*/
+
+
 
 // skor2 kodları
 let skor = 0;
@@ -52,6 +65,13 @@ let skor = 0;
 function skor2() {
   return skor++;
 }
+
+console.log(skor2());
+console.log(skor2());
+console.log(skor2());
+console.log(skor2());
+
+
 
 
 /* Görev 2: takimSkoru() 
@@ -64,10 +84,12 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru(){
+    let min = Math.ceil(10);
+    let max = Math.floor(25);
+    return Math.floor(Math.random() * (25 - 10 + 1) + 10)
 }
-
+console.log(takimSkoru())
 
 
 
@@ -86,9 +108,22 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */ 
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
-  /*Kodunuzu buraya yazınız*/
+function macSonucu(takimSkoru, çeyrek){
+  
+  let EvSahibi = 0;
+  let KonukTakim = 0;
+  let sonuc = {"EvSahibi": 0 , "KonukTakim": 0};
+  for(let i =1; i <= çeyrek; i++ ){
+    let evsonuc = takimSkoru();
+    let konuksonuc = takimSkoru();
+    EvSahibi = EvSahibi + evsonuc;
+    KonukTakim = KonukTakim + konuksonuc;
+    sonuc = {"EvSahibi": EvSahibi , "KonukTakim": KonukTakim}   
+  }
+  return sonuc
 }
+
+console.log(macSonucu(takimSkoru, 3))
 
 
 
@@ -109,10 +144,13 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
-  /*Kodunuzu buraya yazınız*/
-
+function periyotSkoru(takimSkoru){
+  let evperiyot = takimSkoru();
+  let konukperiyot = takimSkoru();
+  let sonuc = {"EvSahibi": evperiyot, "KonukTakim": konukperiyot}
+  return sonuc 
 }
+console.log(periyotSkoru(takimSkoru))
 
 
 /* Zorlayıcı Görev 5: skorTabelasi() 
